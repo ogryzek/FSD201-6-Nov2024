@@ -25,3 +25,19 @@ That you can use to make requests, such as this:
 # fetch one hearthstone card
 curl -H "Authorization: Bearer {access_token}" https://us.api.blizzard.com/hearthstone/cards/52119-arch-villain-rafaam?locale=en_us
 ```
+
+Here's an example using Axios that is pretty much equivalent to `curl https://www.google.com`. See if you can extend it consume the Blizzard API.
+
+```js
+const axios = require('axios');
+const url = 'https://www.google.com'
+
+axios.get(url)
+.then( (resp) => {
+    console.log(resp.data)
+}).catch(e => {
+    console.log('There was an error: ', e);
+});
+
+```
+

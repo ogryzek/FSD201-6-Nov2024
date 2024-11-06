@@ -9,8 +9,19 @@ Of course, there are some caveats. You will need to register for API Access, and
 The [Getting Started](https://develop.battle.net/documentation/guides/getting-started) guide is a great place to start. You may notice that there is a method using `curl` to generate the access token that looks like this:  
   
 ```sh
-curl -u {client_id}:{client_secret} -d grant_type=client_credentials https:oauth.battle.net/token
+curl -u {client_id}:{client_secret} -d grant_type=client_credentials https://oauth.battle.net/token
 ```
 
 Try replacing `{client_id}` and `{client_secret}` with the values from an API Access Client from the developer portal (https://develop.battle.net/access/clients).
 
+This should return an access token: 
+
+```
+{"access_token":"{access_token}","token_type":"bearer","expires_in":86399,"sub":"{client_id}"}
+```
+
+That you can use to make requests, such as this:
+```
+# fetch one hearthstone card
+curl -H "Authorization: Bearer {access_token}" https://us.api.blizzard.com/hearthstone/cards/52119-arch-villain-rafaam?locale=en_us
+```

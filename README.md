@@ -41,3 +41,32 @@ axios.get(url)
 
 ```
 
+## Day 3
+### Exercise 01  
+  
+Have a look at the solution for Do it yourself 3:
+
+```js
+const http = require('http');
+
+http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    const baseURL = req.protocol + '://' + req.headers.host + '/';
+    const reqUrl = new URL(req.url, baseURL);
+    const path = reqUrl.pathname;
+
+    if (path === "/params") {
+        const searchParams =
+            new URLSearchParams(reqUrl.searchParams);
+        res.write(searchParams.toString());
+    }
+    else {
+        res.write("I don't know how to respond to that");
+    }
+
+    res.end();
+}).listen(3001);
+```
+
+
+

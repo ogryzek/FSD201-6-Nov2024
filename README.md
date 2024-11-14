@@ -12,4 +12,3 @@ Try to only use modules that we have discussed this week and/or that are part of
   - Chapter 3 - DIY 1-3
   - Chapter 4 - DIY 1-3 
   - [LinuxFoundation Intro to Node.js (LFW111)](https://training.linuxfoundation.org/training/introduction-to-nodejs-lfw111/)  
-    

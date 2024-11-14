@@ -4,10 +4,10 @@ const readFileData = file => {
     return new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
             if (err) reject(err);
-            resolve(data);
+            else resolve(data);
         });
     });
-}
+};
 
 const writeDataToFile = (file, data) => {
     return new Promise((resolve, reject) => {
@@ -16,24 +16,31 @@ const writeDataToFile = (file, data) => {
             else resolve(data);
         });
     });
-}
+};
 
-readFileData('./server/data/data1.json')
-    .then(data => {
-        data = JSON.parse(data);
+const writingDataToFile = async () => {
+    try {
+        const data = JSON.parse(await readFileData('./server/data/data1.json'));
+        let productName = false;
 
         for (let i = 0; i < data.length; i++) {
             if (data[i].productName === "Ball")
-                return data[i].productName;
+                productName = data[i].productName;
         }
 
-        return false;
-    })
-    .then(productName => {
         const output = productName ?
-            `product ${productName}` : 'product Not exists';
+            `product ${productName} saved` : "product doesn't exist";
 
-        return writeDataToFile('./server/data/data2.json', output);
+        return await writeDataToFile('./server/data/data2.json', output);
+    }
+    catch (e) {
+        console.error(e);
+    }
+};
+
+writingDataToFile()
+    .then(x=> {
+        console.log(x);
+        console.log('data saved to file!');
     })
-    .then(() => console.log('data saved to file'))
-    .catch((err) => console.error(err));
+    .catch(err => console.error(`ERROR: ${err}`));

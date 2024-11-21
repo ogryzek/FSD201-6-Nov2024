@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "car",
+        "price": 50,
+        "description": "speed car with controller",
+        "picture": "car.png"
+    },
+    {
+        "id": 2,
+        "name": "update test car",
+        "price": 500000,
+        "description": "beautiful brown bear",
+        "picture": "bear.png"
+    }
+]

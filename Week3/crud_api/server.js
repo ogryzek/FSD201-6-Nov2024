@@ -10,6 +10,13 @@ function getNewToyID() {
     return lastToy.id + 1;
 }
 
+function updateToy(toy, {name, price, description, picture}) {
+    if (name) toy.name = name;
+    if (price) toy.price = price;
+    if (description) toy.description = description;
+    if (picture) toy.picture = picture;
+}
+
 /* 
     The Read part of CRUD
     GET /api/v1/toys returns a list of toys 
@@ -59,6 +66,52 @@ app.get('/api/v1/toys/:id', (req, res) => {
         status: "success",
         data: toy
     });
+});
+
+app.patch('/api/v1/toys/:id', (req, res) =>{
+    const id = Number(req.params.id);
+    const toy = toys.find(toy => toy.id === id);
+    
+    if(!toy) {
+        return res.status(404).json(
+            {
+                status: 'fail',
+                message: `No toy exists with an id: ${id}`
+            }
+        )
+    }
+
+    updateToy(toy, req.body);
+
+    fs.writeFile('./data/data.json', JSON.stringify(toys), err =>{
+        res.status(200).json({
+            status: "success",
+            data: toy
+        });
+    })
+});
+
+app.delete('/api/v1/toys/:id', (req, res) =>{
+    const id = Number(req.params.id);
+    const toy = toys.find(toy => toy.id === id);
+    
+    if(!toy) {
+        return res.status(404).json(
+            {
+                status: 'fail',
+                message: `No toy exists with an id: ${id}`
+            }
+        )
+    }
+
+    toys.splice(toys.findIndex(t => t.id === id), 1);
+
+    fs.writeFile('./data/data.json', JSON.stringify(toys), err =>{
+        res.status(200).json({
+            status: "success",
+            data: toy
+        });
+    })
 });
 
 app.listen(port);

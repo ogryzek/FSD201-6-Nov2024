@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "type": "t-shirt",
+        "size": "medium",
+        "color": "white",
+        "description": "this is a t-shirt"
+    },
+    {
+        "id": 2,
+        "type": "t-shirt",
+        "size": "small",
+        "color": "white",
+        "description": "this is a t-shirt"
+    },
+    {
+        "id": 3,
+        "type": "t-shirt",
+        "size": "large",
+        "color": "white",
+        "description": "this is a t-shirt"
+    }
+]

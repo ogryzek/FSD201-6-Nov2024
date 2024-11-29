@@ -106,3 +106,56 @@ http.createServer((req, res) => {
 
 ```
 
+### Writing to a file  
+  
+To write to a file, we can use `fs.writeFile`, `fs.writeFileSync` or `fs.appendFile`, `fs.appendFileSync`. You can think through a little how these may differ and what makes sense for your own use case.  
+  
+`./data/clothing.js`: 
+```json
+[
+    {
+        "id": 1,
+        "type": "t-shirt",
+        "size": "medium",
+        "color": "white",
+        "description": "this is a t-shirt"
+    },
+    {
+        "id": 2,
+        "type": "t-shirt",
+        "size": "small",
+        "color": "white",
+        "description": "this is a t-shirt"
+    },
+    {
+        "id": 3,
+        "type": "t-shirt",
+        "size": "large",
+        "color": "white",
+        "description": "this is a t-shirt"
+    }
+]
+
+```
+
+Let's create an endpoint called `/clothing` that accepts a GET request and returns all of the clothing as a json list.  
+  
+```js
+const http = require('http');
+const fs = require('fs');
+
+http.createServer((req, res) => {
+    const method = req.method;
+    const path = req.url;
+    res.setHeader('Content-Type', 'application/json');
+    if (path === '/clothing' && method === 'GET') {
+        res.status(200);
+        res.write("This is allowed, yay!");
+    } else if (path === '/clothing') {
+        res.status(405);
+        res.write('Method Not Allowed');
+    }
+    res.end();
+}).listen(3000);
+
+```

@@ -52,3 +52,19 @@ http.createServer((req, res) => {
 }).listen(3000);
 
 ```
+
+## Read/Write to files  
+  
+```js
+const http = require('http');
+const fs = require('fs');
+const pathToFile = './foods/fruit.js'
+
+http.createServer((req, res) => {
+    const fruits = fs.readFileSync(pathToFile);
+    res.setHeader('Content-Type', 'application/json');
+    res.write(fruits);
+    res.end();
+}).listen(3000);
+
+```

@@ -1,0 +1,16 @@
+{
+    "berries": [
+        "strawberries",
+        "blueberries",
+        "cranberries",
+        "salmonberries",
+        "mulberries",
+        "raspberries"
+    ],
+    "pit fruits": [
+        "avocado",
+        "plum",
+        "apricot",
+        "mango"
+    ]
+}

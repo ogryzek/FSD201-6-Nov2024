@@ -53,6 +53,43 @@ http.createServer((req, res) => {
 
 ```
 
+## Move Router to its own module  
+  
+```js
+// myrouter.js
+exports.myRouter = function(req) {
+    const path = req.url;
+    const verb = req.method;
+    if(path === '/') {
+        return `The home page was ${verb} requested`;
+    } else if (path === '/lol') {
+        if (verb === 'GET') {
+            return 'GET ME the /lol page.';
+        } else if (verb === 'POST') {
+            return 'POST to /lol is not implemented yet';
+        } else if (verb === 'DELETE') {
+            return 'You cannot delete me!';
+        }
+    }
+}
+
+```
+
+Import into the webserver:
+
+```js
+// webserver.js
+const http = require('http');
+const lol = require('./myrouter.js');
+
+http.createServer((req, res) => {
+    const response = lol.myRouter(req);
+    res.setHeader('Content-Type', 'text/html');
+    res.write(`<h1>My Page</h1><br><p>${response}</p>`);
+    res.end();
+}).listen(3000);
+```
+
 ## Read/Write to files  
   
 ```js
@@ -68,3 +105,4 @@ http.createServer((req, res) => {
 }).listen(3000);
 
 ```
+

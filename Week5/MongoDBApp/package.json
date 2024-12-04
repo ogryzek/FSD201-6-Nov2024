@@ -1,0 +1,14 @@
+{
+  "name": "mongodbapp",
+  "version": "1.0.0",
+  "description": "An application using MongoDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Drew Ogryzek",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "mongodb": "^6.11.0"
+  }
+}

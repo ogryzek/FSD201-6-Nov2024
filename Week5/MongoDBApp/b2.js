@@ -1,6 +1,8 @@
 const { MongoClient } = require("mongodb");
 // Replace the uri string with your MongoDB deployment's connection string.
-const uri = <connection-string>
+const uri = "mongodb+srv://FreeClusterApplicationUser001:rSrm9mYcuDKQRqcM@myfreecluster001.jv1bn.mongodb.net/?retryWrites=true&w=majority&appName=MyFreeCluster001";
+
+// const uri = <connection-string>
 // Create a new client and connect to MongoDB
 const client = new MongoClient(uri);
 async function run() {
